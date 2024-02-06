@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine's Day</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+
+    h1 {
+        color: #ff0066;
+        margin-top: 50px;
+    }
+
+    .button {
+        padding: 10px 20px;
+        margin: 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+
+    .yes-button {
+        background-color: #00cc66;
+        color: white;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .no-button {
+        background-color: #ff3333;
+        color: white;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .no-button:hover {
+        background-color: #ff6666;
+    }
+
+    .bigger {
+        font-size: 20px;
+    }
+</style>
+</head>
+<body>
+
+<h1>Do you want to be my valentine?</h1>
+<button class="button yes-button" onclick="yesButtonClick()">Yes</button>
+<button class="button no-button" onclick="noButtonClick()">No</button>
+
+<script>
+    let clickedNo = false;
+    let paddingMultiplier = 1;
+    const messages = ["Are you sure?", "Are you playing hard to get?", "Oh, come on! Don't be a heartbreaker!", "Is this a plot twist?", "Seriously? No take-backsies!", "Take a moment and think about it", "Let's give it another thought"];
+
+    function yesButtonClick() {
+        if (clickedNo) {
+            document.querySelector('.yes-button').classList.add('bigger');
+            window.location.href = 'yes-page.html'; // Redirect to yes-page.html
+        }
+    }
+
+    function noButtonClick() {
+        if (!clickedNo) {
+            clickedNo = true;
+        } else {
+            paddingMultiplier *= 1.5; // Double the padding
+            document.querySelector('.yes-button').style.padding = `calc(10px * ${paddingMultiplier})  calc(20px * ${paddingMultiplier})`;
+            let randomMessage = messages.shift(); // Get and remove the first message from the array
+            messages.push(randomMessage); // Add the message to the end of the array
+            document.querySelector('.no-button').innerText = randomMessage;
+        }
+    }
+</script>
+
+</body>
+</html>
