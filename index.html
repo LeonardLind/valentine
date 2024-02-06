@@ -68,13 +68,18 @@
     function noButtonClick() {
         if (!clickedNo) {
             clickedNo = true;
+            updateNoButton();
         } else {
             paddingMultiplier *= 1.5; // Double the padding
             document.querySelector('.yes-button').style.padding = `calc(10px * ${paddingMultiplier})  calc(20px * ${paddingMultiplier})`;
-            let randomMessage = messages.shift(); // Get and remove the first message from the array
-            messages.push(randomMessage); // Add the message to the end of the array
-            document.querySelector('.no-button').innerText = randomMessage;
+            updateNoButton();
         }
+    }
+
+    function updateNoButton() {
+        let randomMessage = messages.shift(); // Get and remove the first message from the array
+        messages.push(randomMessage); // Add the message to the end of the array
+        document.querySelector('.no-button').innerText = randomMessage;
     }
 </script>
 
